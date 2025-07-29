@@ -5,28 +5,15 @@ import productDetailReducer from "../features/productDetailSlice";
 import userReducer from "../features/userSlice";
 import sellerItemReducer from '../features/sellerItemSlice';
 
-const loadState = () => {
+const persistedState = (() => {
     try {
         const serializedState = localStorage.getItem('state');
-        if (serializedState === null) {
-            return undefined;
-        }
-        return JSON.parse(serializedState);
-    } catch (err) {
+        return serializedState ? JSON.parse(serializedState) : undefined;
+    } catch (e) {
+        console.warn('Could not load state from localStorage.', e);
         return undefined;
     }
-};
-
-const saveState = (state) => {
-    try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem('state', serializedState);
-    } catch {
-        // Ignore write errors
-    }
-};
-
-const persistedState = loadState();
+})();
 
 export const store = configureStore({
     reducer: {
@@ -40,8 +27,9 @@ export const store = configureStore({
 });
 
 store.subscribe(() => {
-    saveState(store.getState());
+    try {
+        localStorage.setItem('state', JSON.stringify(store.getState()));
+    } catch (e) {
+        console.warn('Could not save state to localStorage.', e);
+    }
 });
-
-
-
