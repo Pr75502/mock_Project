@@ -41,7 +41,7 @@ const ProductDetails = () => {
                             <p><strong>Category:</strong> {details.category}</p>
                             <p><strong>Brand:</strong> {details.brand}</p>
                             <p><strong>Weight:</strong> {details.weight}</p>
-                            <p><strong>Dimensions:</strong> {details.dimensions.width} x {details.dimensions.height} x {details.dimensions.depth}</p>
+                            {details.dimensions && <p><strong>Dimensions:</strong> {details.dimensions.width} x {details.dimensions.height} x {details.dimensions.depth}</p>}
                             <p><strong>Warranty:</strong> {details.warrantyInformation}</p>
                             <p><strong>Shipping:</strong> {details.shippingInformation}</p>
                             <p><strong>Status:</strong> {details.availabilityStatus}</p>

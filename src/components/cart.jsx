@@ -1,11 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, incrementQuantity, decrementQuantity } from "../redux/features/cartSlice";
 import { viewDetails } from "../redux/features/productDetailSlice";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 
 const Cart = () => {
     const { cart } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
+    const navigate=useNavigate()
 
     const handleRemove = (id) => {
         dispatch(removeFromCart(id));
@@ -13,6 +15,7 @@ const Cart = () => {
 
     const handleDetails = (item) => {
         dispatch(viewDetails(item));
+        navigate("/productDetails")
     };
 
     if (cart.length === 0) {

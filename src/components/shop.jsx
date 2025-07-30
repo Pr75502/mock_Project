@@ -1,13 +1,21 @@
 import { setCategory } from "../redux/features/productSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { viewDetails } from "../redux/features/productDetailSlice";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
     const dispatch = useDispatch();
+    const navigate=useNavigate()
     const { products, allProducts } = useSelector((state) => state.product);
 
     const handleCategory = (category) => {
         dispatch(setCategory(category));
     };
+    const handleClick = (product) => {
+        dispatch(viewDetails(product))
+        navigate("/productDetails")
+
+    }
 
     const uniqueCategories = ["All", ...new Set(allProducts.map((product) => product.category))];
 
@@ -26,7 +34,9 @@ const Shop = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {products.map((product) => (
-                    <div key={product.id} className="border p-4 rounded-lg shadow-md bg-white">
+                    <div key={product.id}
+                        onClick={()=>handleClick(product)}
+                        className="border p-4 rounded-lg shadow-md bg-white">
                         <img src={product.images[0]} alt={product.title} className="w-full h-48 object-cover mb-2 rounded-md" />
                         <h2 className="text-xl font-bold mb-1">{product.title}</h2>
                         <p className="text-gray-700">${product.price}</p>
