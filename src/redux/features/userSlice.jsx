@@ -17,11 +17,8 @@ const userSlice = createSlice({
         setSignupUser: (state,action) => {
             state.signupUsers.push(action.payload)
             state.loginUser=action.payload
-        },
-        setLogoutUser: (state) => {
-            state.loginUser=""
         }
     }
 })
 export default userSlice.reducer
-export const { setLogin, setSignupUser, setLogoutUser } = userSlice.actions
+export const { setLogin, setSignupUser } = userSlice.actions

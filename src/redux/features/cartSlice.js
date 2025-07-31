@@ -16,7 +16,7 @@ const cartSlice = createSlice({
             if (item) {
                 item.quantity++;
             } else {
-                state.cart.push({ ...action.payload, quantity: 1 });
+                state.cart.push({ ...action.payload, quantity: 1 })
             }
         },
 
@@ -27,14 +27,14 @@ const cartSlice = createSlice({
         incrementQuantity: (state, action) => {
             const item = state.cart.find(item => item.id === action.payload);
             if (item) {
-                item.quantity++;
+                item.quantity++
             }
         },
 
         decrementQuantity: (state, action) => {
             const item = state.cart.find(item => item.id === action.payload);
             if (item && item.quantity > 1) {
-                item.quantity--;
+                item.quantity--
             }
         }
 
