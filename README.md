@@ -1,6 +1,6 @@
 # Project
 
-This is a full-stack e-commerce platform built with React, Redux, and Tailwind CSS. It provides a complete shopping experience, from browsing and filtering products to adding items to a cart. The platform also features a dedicated seller portal where vendors can manage their products.
+This is a frontend e-commerce platform built with React, Redux, and Tailwind CSS. It provides a complete shopping experience, from browsing and filtering products to adding items to a cart. The platform also features a dedicated seller portal where vendors can manage their products.
 
 ## Features
 
