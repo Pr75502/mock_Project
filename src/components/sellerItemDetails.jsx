@@ -30,7 +30,7 @@ const SellerItemDetails = () => {
         if (editingItem) {
             setItem(editingItem);
         }
-    }, [editingItem, item]);
+    }, [editingItem]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
