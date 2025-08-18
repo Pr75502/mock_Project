@@ -1,12 +1,48 @@
-import { setCategory } from "../redux/features/productSlice";
+import { setCategory, setSearchTerm, setLiveSearchTerm } from "../redux/features/productSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { viewDetails } from "../redux/features/productDetailSlice";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+const debounce = (func, delay) => {
+    let timeout;
+    return function (...args) {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), delay);
+    };
+};
 
 const Shop = () => {
     const dispatch = useDispatch();
     const navigate=useNavigate()
-    const { products, allProducts } = useSelector((state) => state.product);
+    const { products, allProducts, liveSearchProducts } = useSelector((state) => state.product);
+    const [search, setSearch] = useState("");
+
+    const handleLiveSearch = debounce((value) => {
+        dispatch(setLiveSearchTerm(value));
+    }, 300);
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setSearch(value);
+        handleLiveSearch(value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        dispatch(setSearchTerm(search));
+        navigate("/shop");
+        setSearch("");
+        dispatch(setLiveSearchTerm(""));
+    };
+
+    const handleSuggestionClick = (product) => {
+        dispatch(setSearchTerm(product.title));
+        navigate("/shop");
+        setSearch("");
+        dispatch(setLiveSearchTerm(""));
+    };
 
     const handleCategory = (category) => {
         dispatch(setCategory(category));
@@ -21,6 +57,27 @@ const Shop = () => {
 
     return (
         <div className="container mx-auto p-4">
+            <form onSubmit={handleSearchSubmit} className="relative mb-8 flex justify-center">
+                <input
+                    placeholder="Search for Products Brands and more"
+                    className="w-96 h-10 border border-solid rounded-lg px-4 text-base hover:bg-gray-300"
+                    value={search}
+                    onChange={handleSearchChange}
+                />
+                {search && liveSearchProducts.length > 0 && (
+                    <div className="absolute z-10 bg-white border border-gray-300 rounded-lg mt-1 w-96 max-h-60 overflow-y-auto shadow-lg top-full">
+                        {liveSearchProducts.map((product) => (
+                            <div
+                                key={product.id}
+                                className="p-2 cursor-pointer hover:bg-gray-100 text-base border-b border-gray-200 last:border-b-0"
+                                onClick={() => handleSuggestionClick(product)}
+                            >
+                                {product.title} ({product.category})
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </form>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
                 {uniqueCategories.map((category, index) => (
                     <button
