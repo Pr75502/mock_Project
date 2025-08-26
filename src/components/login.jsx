@@ -46,10 +46,12 @@ const Login = () => {
     return (
       <div>
         {loginUser && Object.keys(loginUser).length > 0 && (
-          <div>
-            <h1 className="">{loginUser.name}</h1>
-                    <p className="">{loginUser.email}</p>
-                    <button onClick={handleLogout}>Logout</button>
+          <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md text-center">
+              <h1 className="text-2xl font-bold mb-4">Welcome, {loginUser.name}!</h1>
+                      <p className="text-lg text-gray-600 mb-6">{loginUser.email}</p>
+                      <button onClick={handleLogout} className="bg-red-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-red-600 transition">Logout</button>
+            </div>
           </div>
         )}
         {(!loginUser || Object.keys(loginUser).length === 0) && (

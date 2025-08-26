@@ -85,9 +85,9 @@ const Cart = () => {
                     <p className="text-2xl font-bold text-center mb-4">Order Summary</p>
                     <p className="text-lg mb-2"><b>Items:</b> {cart.length}</p>
                     <p className="text-lg font-bold mb-4"><b>Total:</b> ${cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
-                    <button className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                        <Link to="/checkout" className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-center">
                         Proceed to Checkout
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

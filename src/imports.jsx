@@ -26,6 +26,7 @@ import BecomeASeller from './footerPages/BecomeASeller';
 import HelpCenter from './footerPages/HelpCenter';
 import SellerItemDetails from './components/sellerItemDetails';
 import MyProducts from './components/myProducts';
+import CheckoutPage from './components/CheckoutPage';
 
 
 export {
@@ -56,6 +57,7 @@ export {
     BecomeASeller,
     HelpCenter,
     SellerItemDetails,
-    MyProducts
+    MyProducts,
+    CheckoutPage
     
 };

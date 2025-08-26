@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
-import { Home, SignUp, Login, Shop, Footer, Navbar, Cart, ProductDetails, Seller, ContactUs, Careers, Payment, Shipping, CancellationReturns, FAQ, TermsOfUse, Privacy, Sitemap, GrievanceRedressal, EPRCompliance, Facebook, Instagram, Twitter, YouTube, BecomeASeller, HelpCenter,SellerItemDetails, MyProducts } from './imports.jsx';
+import { Home, SignUp, Login, Shop, Footer, Navbar, Cart, ProductDetails, Seller, ContactUs, Careers, Payment, Shipping, CancellationReturns, FAQ, TermsOfUse, Privacy, Sitemap, GrievanceRedressal, EPRCompliance, Facebook, Instagram, Twitter, YouTube, BecomeASeller, HelpCenter,SellerItemDetails, MyProducts, CheckoutPage } from './imports.jsx';
 
 
 function App() {
@@ -43,6 +43,7 @@ function App() {
         <Route path="/youtube" element={<YouTube />} />
         <Route path="/become-a-seller" element={<BecomeASeller />} />
         <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
       </main>
       <Footer/>

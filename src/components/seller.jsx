@@ -25,7 +25,7 @@ const Seller = () => {
             }}
         >
             <div className="bg-black bg-opacity-70 p-10 rounded-lg shadow-lg max-w-2xl w-full text-white">
-                <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">Become a Seller</h1>
+                <h1 className="text-3xl font-bold mb-6 text-center text-white">Become a Seller</h1>
                 <p className="text-gray-300 text-lg mb-4">
                     Welcome to the Seller Portal! Join our marketplace and reach millions of customers.
                     As a seller, you can list your products, manage orders, and grow your business with ease.
